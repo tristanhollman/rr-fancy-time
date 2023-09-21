@@ -12,7 +12,7 @@ type FlowerPointOptions = {
 
 export const Tree = (props: MeshProps) => {
   // Load the model.
-  const objModel = useLoader(OBJLoader, "/tree.obj");
+  const objModel = useLoader(OBJLoader, "./tree.obj");
   // Get the geometry data from the loaded model.
   const geometry = useMemo(() => {
     let g;

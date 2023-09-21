@@ -1,22 +1,20 @@
-import { Html, OrbitControls, useProgress } from "@react-three/drei";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import {
-  Autofocus,
-  Bloom,
-  DepthOfField,
-  EffectComposer,
-  Noise,
-} from "@react-three/postprocessing";
-import { useControls } from "leva";
-import React, { Suspense, useMemo, useRef } from "react";
+import styles from "@/styles/Scene.module.css";
+import { Html, OrbitControls, useProgress, Stats } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
+import { EffectComposer, Noise } from "@react-three/postprocessing";
+import { Leva, useControls } from "leva";
+import { Suspense, useMemo } from "react";
 import * as THREE from "three";
 import { Base } from "./Base";
 import { FlyingPetals } from "./FlyingPetals";
 import { Tree } from "./Tree";
 import { backgroundColor } from "./constants";
-import styles from "@/styles/Scene.module.css";
+import { useLocalStorage } from "usehooks-ts";
 
 export function Scene() {
+  const [isDevMode] = useLocalStorage("devMode", false);
+  console.log(isDevMode);
+
   return (
     <>
       <Canvas
@@ -35,7 +33,9 @@ export function Scene() {
           />
           <FlyingPetals />
         </Suspense>
+        {isDevMode && <Stats />}
       </Canvas>
+      <Leva collapsed hidden={!isDevMode} />
       <SoundCloudPlayer />
     </>
   );

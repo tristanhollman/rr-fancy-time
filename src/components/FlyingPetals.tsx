@@ -1,3 +1,4 @@
+import { useTime } from "@/hooks/useTime";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 import React, { useLayoutEffect, useMemo, useRef } from "react";
@@ -11,6 +12,8 @@ type PointOptions = {
 };
 
 export const FlyingPetals = () => {
+  const time = useTime();
+
   const options = useMemo(() => {
     return {
       maxPoints: { value: 30000, min: 0, max: 100000, step: 1 },
@@ -71,7 +74,7 @@ export const FlyingPetals = () => {
     context.textAlign = "center";
     context.textBaseline = "middle";
     context.font = "bold 56px Arial";
-    var timeString = new Date().toLocaleTimeString("en-US", {
+    var timeString = time.toLocaleTimeString("en-US", {
       hour12: false,
       hour: "numeric",
       minute: "numeric",
@@ -87,7 +90,7 @@ export const FlyingPetals = () => {
     context.restore();
 
     return new THREE.CanvasTexture(canvas);
-  }, []);
+  }, [time]);
 
   const uniforms = useMemo(
     () => ({
@@ -99,7 +102,10 @@ export const FlyingPetals = () => {
       effectCanvas: { value: effectCanvas },
       azimuth: { value: 0 },
     }),
-    [effectCanvas]
+    // We can't use the dependency as that will create a new instance, which will break the shader.
+    // Instead values are updated in the useFrame hook.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   const { controls } = useThree();
@@ -131,6 +137,7 @@ export const FlyingPetals = () => {
     if (controls) {
       uniforms.azimuth.value = (controls as any).getAzimuthalAngle() * -1;
     }
+    uniforms.effectCanvas.value = effectCanvas;
   });
 
   return (

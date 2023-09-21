@@ -1,5 +1,6 @@
+import useLocalStorage from "@/hooks/useLocalStorage";
 import styles from "@/styles/Scene.module.css";
-import { Html, OrbitControls, useProgress, Stats } from "@react-three/drei";
+import { Html, OrbitControls, Stats, useProgress } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { EffectComposer, Noise } from "@react-three/postprocessing";
 import { Leva, useControls } from "leva";
@@ -9,11 +10,9 @@ import { Base } from "./Base";
 import { FlyingPetals } from "./FlyingPetals";
 import { Tree } from "./Tree";
 import { backgroundColor } from "./constants";
-import { useLocalStorage } from "usehooks-ts";
 
 export function Scene() {
   const [isDevMode] = useLocalStorage("devMode", false);
-  console.log(isDevMode);
 
   return (
     <>
@@ -35,7 +34,7 @@ export function Scene() {
         </Suspense>
         {isDevMode && <Stats />}
       </Canvas>
-      <Leva collapsed hidden={!isDevMode} />
+      <Leva hidden={!isDevMode} collapsed />
       <SoundCloudPlayer />
     </>
   );

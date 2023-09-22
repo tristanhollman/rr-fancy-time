@@ -1,17 +1,13 @@
 import useLocalStorage from "@/hooks/useLocalStorage";
 import styles from "@/styles/Scene.module.css";
 import { Html, OrbitControls, Stats, useProgress } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { EffectComposer, Noise } from "@react-three/postprocessing";
 import { Leva, useControls } from "leva";
 import { Suspense, useMemo } from "react";
 import * as THREE from "three";
-import { Base } from "./Base";
-import { FlyingPetals } from "./FlyingPetals";
-import { Tree } from "./Tree";
-import { backgroundColor } from "./constants";
 
-export function Scene() {
+export function GlobeScene() {
   const [isDevMode] = useLocalStorage("devMode", false);
 
   return (
@@ -23,15 +19,7 @@ export function Scene() {
       >
         <Background />
         <RotatingCamera />
-        <Suspense fallback={<Loader />}>
-          <Base position={[-8, -0.15, 4]} />
-          <Tree
-            rotation={[0, THREE.MathUtils.DEG2RAD * 80, 0]}
-            position={[-8, 0, 4]}
-            scale={16}
-          />
-          <FlyingPetals />
-        </Suspense>
+        <Suspense fallback={<Loader />}></Suspense>
         {isDevMode && <Stats />}
       </Canvas>
       <Leva hidden={!isDevMode} collapsed />
@@ -68,9 +56,6 @@ const RotatingCamera = () => {
 };
 
 const Background = () => {
-  const { gl } = useThree();
-  gl.setClearColor(backgroundColor);
-
   return (
     <>
       <ambientLight color="white" intensity={1} />

@@ -1,4 +1,4 @@
-import StaticSakuraScene from "@/components/sakura-static/StaticSakuraScene";
+import SakuraScene from "@/components/sakura-tree/SakuraScene";
 import styles from "@/styles/Home.module.css";
 import { NoSsr } from "@mui/material";
 import { Inter } from "next/font/google";
@@ -20,7 +20,7 @@ export default function Globe() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <NoSsr>
-          <StaticSakuraScene />
+          <SakuraScene />
         </NoSsr>
       </main>
     </>

@@ -1,4 +1,3 @@
-import useLocalStorage from "@/hooks/useLocalStorage";
 import styles from "@/styles/Scene.module.css";
 import { Html, OrbitControls, Stats, useProgress } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
@@ -10,8 +9,9 @@ import { Base } from "./Base";
 import { FlyingPetals } from "./FlyingPetals";
 import { Tree } from "./Tree";
 import { backgroundColor } from "./constants";
+import { useLocalStorage } from "usehooks-ts";
 
-export function SakuraScene() {
+export default function SakuraScene() {
   const [isDevMode] = useLocalStorage("devMode", false);
 
   return (

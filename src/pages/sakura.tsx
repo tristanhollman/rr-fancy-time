@@ -1,4 +1,4 @@
-import SakuraScene from "@/components/sakura-tree/SakuraScene";
+import StaticSakuraScene from "@/components/sakura-static/StaticSakuraScene";
 import styles from "@/styles/Home.module.css";
 import { NoSsr } from "@mui/material";
 import { Inter } from "next/font/google";
@@ -6,11 +6,11 @@ import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Globe() {
   return (
     <>
       <Head>
-        <title>Fancy Time</title>
+        <title>Fancy Sakura Petals</title>
         <meta
           name="description"
           content="Fancy Time application for a mini hackaton."
@@ -20,7 +20,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <NoSsr>
-          <SakuraScene />
+          <StaticSakuraScene />
         </NoSsr>
       </main>
     </>

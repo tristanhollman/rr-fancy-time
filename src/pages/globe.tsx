@@ -1,7 +1,7 @@
-import Head from "next/head";
-import { Inter } from "next/font/google";
+import GlobeScene from "@/components/globe/GlobeScene";
 import styles from "@/styles/Home.module.css";
-import { GlobeScene } from "@/components/globe/GlobeScene";
+import { Inter } from "next/font/google";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -14,8 +14,6 @@ type PointOptions = {
 
 export const FlyingPetals = () => {
   const keyMap = useKeyboard();
-  console.log(keyMap);
-
   const time = useTime();
 
   const options = useMemo(() => {

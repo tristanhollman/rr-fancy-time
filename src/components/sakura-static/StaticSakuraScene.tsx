@@ -35,7 +35,7 @@ export default function StaticSakuraScene() {
     <>
       <Canvas
         shadows
-        camera={{ position: [0, 8, 10] }}
+        camera={{ position: [0, 0, 10] }}
         className={`${styles.backgroundCanvas}`}
       >
         <Suspense fallback={<Loader />}>
@@ -57,7 +57,7 @@ const StaticCamera = () => {
       enablePan={false}
       enableRotate={false}
       enableZoom={false}
-      target={[0, 4, 0]}
+      target={[0, 0, 0]}
       makeDefault={true}
     />
   );

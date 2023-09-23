@@ -18,8 +18,8 @@ export const FlyingPetals = () => {
 
   const options = useMemo(() => {
     return {
-      maxPoints: { value: 30000, min: 0, max: 100000, step: 1 },
-      radius: { value: 8, min: 1, max: 25, step: 1 },
+      maxPoints: { value: 40000, min: 0, max: 100000, step: 1 },
+      radius: { value: 8, min: 1, max: 10, step: 1 },
       color: "#ffb2e5", //`#dfb1b6`,
       speed: { value: 0.5, min: 0, max: 25, step: 0.1 },
     };
@@ -79,7 +79,7 @@ export const FlyingPetals = () => {
     context.fillStyle = "#f00";
     context.textAlign = "center";
     context.textBaseline = "middle";
-    context.font = "bold 62px Arial";
+    context.font = "bold 56px Arial";
     var timeString = time.toLocaleTimeString("en-US", {
       hour12: false,
       hour: "numeric",
@@ -101,7 +101,7 @@ export const FlyingPetals = () => {
   const uniforms = useMemo(
     () => ({
       time: { value: 0 },
-      upperLimit: { value: 15 },
+      upperLimit: { value: 20 },
       upperRatio: { value: 1.25 },
       spiralRadius: { value: 1 },
       spiralTurns: { value: 0 },
@@ -149,7 +149,7 @@ export const FlyingPetals = () => {
   });
 
   return (
-    <points ref={ref} position={[0, 18, 0]} rotation={[-Math.PI * 1, 0, 0]}>
+    <points ref={ref} position={[0, 14, 0]} rotation={[-Math.PI * 1, 0, 0]}>
       <bufferGeometry ref={geom} attach="geometry" />
       <pointsMaterial
         ref={mat}
@@ -191,6 +191,7 @@ attribute vec2 speed;
 varying float vRatio;
 varying vec2 vSpeed;
 varying float vIsEffect;
+varying float vIsInFrontOfEffect;
 
 mat2 rot( float a) {
   return mat2(cos(a), -sin(a), sin(a), cos(a));
@@ -247,6 +248,11 @@ void main() {
   isEffect *= (effectUV.z > 0. && effectUV.z < 1.) ? 1. : 0.;
   vIsEffect = isEffect;
 
+  // In front of text canvas effect
+  float isInFrontOfEffect = texture2D(effectCanvas, effectUV.xy).r;
+  isInFrontOfEffect *= effectUV.z <= 0. ? 1. : 0.; // 1. if in front, 0 if not.
+  vIsInFrontOfEffect = isInFrontOfEffect;
+
 	#include <morphtarget_vertex>
 	#include <project_vertex>
 	bool cond = floor(speed.y + 0.5) == 0.;
@@ -274,6 +280,7 @@ uniform float time;
 varying float vRatio;
 varying vec2 vSpeed;
 varying float vIsEffect;
+varying float vIsInFrontOfEffect;
 
 mat2 rot( float a){
   return mat2(cos(a), -sin(a), sin(a), cos(a));
@@ -300,6 +307,7 @@ void main() {
   uv.y *= floor(a + 0.5) == 0. ? 1.25 : 2. + sin(a * PI);
 
   if (length(uv) > 0.5) discard;  // shape function
+  if (vIsInFrontOfEffect > 0.) discard;  // Hide petals that are in front of the text effect canvas
 
   #include <clipping_planes_fragment>
 	vec3 outgoingLight = vec3( 0.0 );

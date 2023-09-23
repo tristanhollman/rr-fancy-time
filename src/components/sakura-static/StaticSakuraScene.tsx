@@ -65,7 +65,10 @@ const StaticCamera = () => {
 
 const Background = () => {
   const { scene } = useThree();
-  const texture = useLoader(THREE.TextureLoader, "./sakura-wallpaper.jpg");
+  const texture = useLoader(
+    THREE.TextureLoader,
+    "./sakura-wallpaper-upscaled-01.png"
+  );
   texture.colorSpace = THREE.SRGBColorSpace;
   scene.background = texture;
 

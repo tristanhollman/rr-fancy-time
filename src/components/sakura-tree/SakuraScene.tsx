@@ -1,15 +1,17 @@
 import styles from "@/styles/Scene.module.css";
-import { Html, OrbitControls, Stats, useProgress } from "@react-three/drei";
+import { OrbitControls, Stats } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { EffectComposer, Noise } from "@react-three/postprocessing";
 import { Leva, useControls } from "leva";
 import { Suspense, useMemo } from "react";
 import * as THREE from "three";
+import { useLocalStorage } from "usehooks-ts";
+import { CanvasLoader } from "../shared/CanvasLoader";
+import { SoundCloudPlayer } from "../shared/SoundCloudPlayer";
 import { Base } from "./Base";
 import { FlyingPetals } from "./FlyingPetals";
 import { Tree } from "./Tree";
 import { backgroundColor } from "./constants";
-import { useLocalStorage } from "usehooks-ts";
 
 export default function SakuraScene() {
   const [isDevMode] = useLocalStorage("devMode", false);
@@ -21,9 +23,9 @@ export default function SakuraScene() {
         camera={{ position: [0, 4, 12] }}
         className={`${styles.backgroundCanvas}`}
       >
-        <Background />
-        <RotatingCamera />
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<CanvasLoader />}>
+          <Background />
+          <RotatingCamera />
           <Base position={[-8, -0.15, 4]} />
           <Tree
             rotation={[0, THREE.MathUtils.DEG2RAD * 80, 0]}
@@ -31,8 +33,8 @@ export default function SakuraScene() {
             scale={16}
           />
           <FlyingPetals />
+          {isDevMode && <Stats />}
         </Suspense>
-        {isDevMode && <Stats />}
       </Canvas>
       <Leva hidden={!isDevMode} collapsed />
       <SoundCloudPlayer />
@@ -78,25 +80,5 @@ const Background = () => {
         <Noise opacity={0.02} />
       </EffectComposer>
     </>
-  );
-};
-
-const Loader = () => {
-  const { progress } = useProgress();
-  return (
-    <Html center style={{ color: "white" }}>
-      {progress} % loaded
-    </Html>
-  );
-};
-
-const SoundCloudPlayer = () => {
-  return (
-    <iframe
-      title="soundcloud player"
-      allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/962285422&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-      style={{ display: "none" }}
-    ></iframe>
   );
 };

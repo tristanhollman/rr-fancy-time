@@ -1,11 +1,13 @@
 import styles from "@/styles/Scene.module.css";
-import { Html, OrbitControls, Stats, useProgress } from "@react-three/drei";
+import { OrbitControls, Stats } from "@react-three/drei";
 import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { Leva, useControls } from "leva";
 import { Suspense, useMemo } from "react";
 import * as THREE from "three";
-import { Globe } from "./Globe";
 import { useLocalStorage } from "usehooks-ts";
+import { CanvasLoader } from "../shared/CanvasLoader";
+import { SoundCloudPlayer } from "../shared/SoundCloudPlayer";
+import { Globe } from "./Globe";
 
 export default function GlobeScene() {
   const [isDevMode] = useLocalStorage("devMode", false);
@@ -20,12 +22,12 @@ export default function GlobeScene() {
         camera={{ position: [0, 150, 250] }}
         className={`${styles.backgroundCanvas}`}
       >
-        <Background />
-        <RotatingCamera />
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<CanvasLoader />}>
+          <Background />
+          <RotatingCamera />
           <Globe position={[0, 0, 0]} />
+          {isDevMode && <Stats />}
         </Suspense>
-        {isDevMode && <Stats />}
       </Canvas>
       <Leva hidden={!isDevMode} collapsed />
       <SoundCloudPlayer />
@@ -70,25 +72,5 @@ const Background = () => {
     <>
       <ambientLight color="white" intensity={1} />
     </>
-  );
-};
-
-const Loader = () => {
-  const { progress } = useProgress();
-  return (
-    <Html center style={{ color: "white" }}>
-      {progress} % loaded
-    </Html>
-  );
-};
-
-const SoundCloudPlayer = () => {
-  return (
-    <iframe
-      title="soundcloud player"
-      allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/962285422&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-      style={{ display: "none" }}
-    ></iframe>
   );
 };

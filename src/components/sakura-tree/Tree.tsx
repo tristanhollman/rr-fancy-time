@@ -90,7 +90,7 @@ export const Tree = (props: MeshProps) => {
         <pointsMaterial
           ref={flowerMat}
           color={primaryColor}
-          size={0.25}
+          size={1}
           onBeforeCompile={(shader) => {
             shader.uniforms.u_time = uniforms.u_time;
             shader.fragmentShader = fragmentShader;
@@ -118,6 +118,15 @@ varying float vAngle;
 
 #include <common>
 
+// Calculate the base size of a petal based on how high it is on the tree.
+// Resulting in almost no/small petals on the trunk, and bigger petals on the branches.
+float calculateBaseSizeBasedOnHeight() {
+  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+  float yRatio = modelPosition.y / 10.;
+  
+  return size * yRatio;
+}
+
 void main() {
 	#include <begin_vertex>
   
@@ -125,9 +134,11 @@ void main() {
 
 	#include <project_vertex>
 
-	float halfSize = size * 0.5;
+  float petalSize = calculateBaseSizeBasedOnHeight();
+	float halfPetalSize = petalSize * 0.5;
+
   float tIdx = idx + u_time;
-  gl_PointSize = size + (sin(tIdx) * cos(tIdx * 2.5) * 0.5 + 0.5) * halfSize * 0.5;
+  gl_PointSize = petalSize + (sin(tIdx) * cos(tIdx * 2.5) * 0.5 + 0.5) * halfPetalSize * 0.5;
 
 	#ifdef USE_SIZEATTENUATION
 		bool isPerspective = isPerspectiveMatrix( projectionMatrix );

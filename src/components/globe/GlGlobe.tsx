@@ -10,14 +10,13 @@ import { Feature, FeatureCollection } from "./GeoJsonTypes";
 
 export const GlGlobe = () => {
   const ref = useRef<any>();
-  const [i, setI] = useState<number>(0);
 
   const [countryData, setCountryData] = useState<FeatureCollection>();
   useEffect(() => {
     fetch("./countries.geojson")
       .then((res) => res.json())
       .then((data) => setCountryData(data));
-  }, [i]);
+  }, []);
 
   const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
   const [autoRotate, toggleAutoRotate] = useToggle(true);
@@ -29,7 +28,6 @@ export const GlGlobe = () => {
     camera.updateProjectionMatrix();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    setI(i + 1);
   });
 
   useEffect(() => {

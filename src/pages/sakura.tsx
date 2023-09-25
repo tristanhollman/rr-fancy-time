@@ -1,12 +1,12 @@
 import SakuraScene from "@/components/sakura-tree/SakuraScene";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Page.module.css";
 import { NoSsr } from "@mui/material";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Globe() {
+export default function Sakura() {
   return (
     <>
       <Head>

@@ -1,4 +1,4 @@
-import styles from "@/styles/Scene.module.css";
+import styles from "@/styles/SakuraScene.module.css";
 import { Button } from "@mui/material";
 import { OrbitControls, Stats } from "@react-three/drei";
 import { Canvas, useLoader, useThree } from "@react-three/fiber";

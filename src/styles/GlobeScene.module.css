@@ -1,0 +1,16 @@
+.detailCard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  padding: 1rem;
+}
+
+.globeControls {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+}

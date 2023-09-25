@@ -5,12 +5,12 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: dimgray;
+  background-color: #181c20;
 }
 
 .backgroundCanvas {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: dimgray;
+  background-color: #181c20;
 }

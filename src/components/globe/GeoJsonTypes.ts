@@ -1,4 +1,4 @@
-export type GeoJSONProperties = {
+export type CountryProperties = {
   scalerank: number;
   featurecla: string;
   LABELRANK: number;
@@ -72,6 +72,11 @@ export type GeoJSONProperties = {
   MAX_LABEL: number;
 };
 
+export type TimezoneProperties = {
+  id: string;
+  TIMEZONE: string;
+};
+
 export type Geometry = {
   type: string;
   coordinates: number[][][];
@@ -79,13 +84,29 @@ export type Geometry = {
 
 export type Feature = {
   type: string;
-  properties: GeoJSONProperties;
-  bbox: number[];
   geometry: Geometry;
+};
+
+export type CountryFeature = Feature & {
+  properties: CountryProperties;
+  bbox: number[];
+};
+
+export type TimezoneFeature = Feature & {
+  properties: TimezoneProperties;
+  id: string;
 };
 
 export type FeatureCollection = {
   type: string;
   features: Feature[];
+};
+
+export type CountryFeatureCollection = FeatureCollection & {
+  features: CountryFeature[];
   bbox: number[];
+};
+
+export type TimezoneFeatureCollection = FeatureCollection & {
+  features: TimezoneFeature[];
 };

@@ -1,32 +1,36 @@
-import styles from "@/styles/GlobeScene.module.css";
-import AutoModeIcon from "@mui/icons-material/AutoMode";
-import { IconButton, Paper, Stack, Tooltip } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import Globe from "react-globe.gl";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { useEventListener, useToggle } from "usehooks-ts";
-import { Feature, FeatureCollection } from "./GeoJsonTypes";
+import { DetailCard } from "./DetailCard";
+import { CountryFeature, CountryFeatureCollection } from "./GeoJsonTypes";
+import { GlobeControls } from "./GlobeControls";
+import { TimezoneCard } from "./TimezoneCard";
 
 export const GlGlobe = () => {
   const ref = useRef<any>();
 
-  const [countryData, setCountryData] = useState<FeatureCollection>();
+  const [countryData, setCountryData] = useState<CountryFeatureCollection>();
   useEffect(() => {
     fetch("./countries.geojson")
       .then((res) => res.json())
       .then((data) => setCountryData(data));
   }, []);
 
-  const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<CountryFeature | null>(
+    null
+  );
+  const [selectedCoords, setSelectedCoords] = useState<Coords | null>(null);
   const [autoRotate, toggleAutoRotate] = useToggle(true);
 
   useEventListener("resize", () => {
+    // Also make sure the camera/renderer are using the new screen sizes and view port.
     const camera = ref.current.camera() as THREE.PerspectiveCamera;
     const renderer = ref.current.renderer() as THREE.WebGLRenderer;
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
@@ -47,44 +51,29 @@ export const GlGlobe = () => {
         polygonCapColor={() => "transparent"}
         polygonStrokeColor={() => "rgba(15, 15, 15, 0.8)"}
         polygonSideColor={() => "rgba(15, 15, 15, 0.8)"}
-        polygonAltitude={() => 0.001}
-        polygonLabel={(feature: Feature) =>
-          `<b>${feature.properties.ADMIN} (${feature.properties.ISO_A2})</b> <br />
-          Population: <i>${feature.properties.POP_EST}</i>`
+        polygonAltitude={() => 0.002}
+        polygonLabel={(country: CountryFeature) =>
+          `<b>${country.properties.ADMIN}</b>`
         }
-        onPolygonHover={(feature?: Feature, prevFeature?: Feature) => {
-          if (feature !== prevFeature) {
-            setSelectedFeature(feature);
-          }
+        onPolygonClick={(
+          country: CountryFeature,
+          _: MouseEvent,
+          coords: { lat: number; lng: number; altitude: number }
+        ) => {
+          setSelectedCountry(country);
+          setSelectedCoords(coords);
         }}
       />
-      {selectedFeature && <DetailCard feature={selectedFeature} />}
+      <DetailCard country={selectedCountry} />
+      {selectedCoords && (
+        <TimezoneCard lat={selectedCoords.lat} lng={selectedCoords.lng} />
+      )}
       <GlobeControls autoRotateCallback={toggleAutoRotate} />
     </>
   );
 };
 
-const DetailCard = ({ feature }: { feature: Feature }) => {
-  return (
-    <Paper className={`${styles.detailCard}`}>
-      <h1>Country details</h1>
-      <h3>{feature.properties.ADMIN}</h3>
-    </Paper>
-  );
-};
-
-const GlobeControls = ({
-  autoRotateCallback,
-}: {
-  autoRotateCallback: () => void;
-}) => {
-  return (
-    <Stack className={`${styles.globeControls}`}>
-      <Tooltip title="Toggle auto rotation">
-        <IconButton onClick={() => autoRotateCallback()}>
-          <AutoModeIcon />
-        </IconButton>
-      </Tooltip>
-    </Stack>
-  );
+type Coords = {
+  lat: number;
+  lng: number;
 };

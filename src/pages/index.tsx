@@ -1,5 +1,5 @@
 import StaticSakuraScene from "@/components/sakura-static/StaticSakuraScene";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Page.module.css";
 import { NoSsr } from "@mui/material";
 import { Inter } from "next/font/google";
 import Head from "next/head";

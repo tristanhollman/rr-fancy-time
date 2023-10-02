@@ -1,0 +1,23 @@
+.detailCard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  padding: 1rem;
+}
+
+.timezoneCard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  padding: 1rem;
+}
+
+.timezoneCard .error {
+  color: red;
+}

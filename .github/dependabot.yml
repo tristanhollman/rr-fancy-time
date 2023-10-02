@@ -8,3 +8,5 @@ updates:
       dependencies:
         patterns:
           - "*" # Group all dependencies together in a single PR
+    assignees:
+      - tristanhollman

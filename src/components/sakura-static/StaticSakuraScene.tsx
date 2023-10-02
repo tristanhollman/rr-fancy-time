@@ -1,15 +1,16 @@
 import styles from "@/styles/SakuraScene.module.css";
 import { Button } from "@mui/material";
-import { OrbitControls, Stats } from "@react-three/drei";
-import { Canvas, useLoader, useThree } from "@react-three/fiber";
-import { EffectComposer, Noise } from "@react-three/postprocessing";
+import { Stats } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { Leva } from "leva";
 import { Suspense } from "react";
-import * as THREE from "three";
 import { useLocalStorage, useToggle } from "usehooks-ts";
 import { CanvasLoader } from "../shared/CanvasLoader";
 import { SoundCloudPlayer } from "../shared/SoundCloudPlayer";
+import { Background } from "./Background";
 import { FlyingPetals } from "./FlyingPetals";
+import { StaticCamera } from "./StaticCamera";
+import { SakuraControls } from "./SakuraControls";
 
 export default function StaticSakuraScene() {
   const [isDevMode] = useLocalStorage("devMode", false);
@@ -48,37 +49,7 @@ export default function StaticSakuraScene() {
       </Canvas>
       <Leva hidden={!isDevMode} collapsed />
       <SoundCloudPlayer />
+      <SakuraControls />
     </>
   );
 }
-
-const StaticCamera = () => {
-  return (
-    <OrbitControls
-      enablePan={false}
-      enableRotate={false}
-      enableZoom={false}
-      target={[0, 0, 0]}
-      makeDefault={true}
-    />
-  );
-};
-
-const Background = () => {
-  const { scene } = useThree();
-  const texture = useLoader(
-    THREE.TextureLoader,
-    "./sakura-wallpaper-upscaled-01.png"
-  );
-  texture.colorSpace = THREE.SRGBColorSpace;
-  scene.background = texture;
-
-  return (
-    <>
-      <ambientLight color="white" intensity={1} />
-      <EffectComposer>
-        <Noise opacity={0.02} />
-      </EffectComposer>
-    </>
-  );
-};

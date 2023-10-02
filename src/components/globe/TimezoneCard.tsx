@@ -27,6 +27,6 @@ function formattedTime(value: string): string {
   if (!value) {
     return "";
   }
-  const date = new DateTime(value);
+  const date = DateTime.fromFormat(value, "yyyy-MM-dd HH:mm");
   return date.toFormat("HH:mm");
 }

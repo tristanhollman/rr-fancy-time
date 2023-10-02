@@ -1,6 +1,7 @@
-import styles from "@/styles/GlobeScene.module.css";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
-import { IconButton, Stack, Tooltip } from "@mui/material";
+import SpaIcon from "@mui/icons-material/Spa";
+import { IconButton, Tooltip } from "@mui/material";
+import { CanvasControls } from "../shared/CanvasControls";
 
 export const GlobeControls = ({
   autoRotateCallback,
@@ -8,12 +9,17 @@ export const GlobeControls = ({
   autoRotateCallback: () => void;
 }) => {
   return (
-    <Stack className={`${styles.globeControls}`}>
-      <Tooltip title="Toggle auto rotation">
+    <CanvasControls>
+      <Tooltip title="Toggle auto rotation" placement="left">
         <IconButton onClick={() => autoRotateCallback()}>
           <AutoModeIcon />
         </IconButton>
       </Tooltip>
-    </Stack>
+      <Tooltip title="Go to sakura view" placement="left">
+        <IconButton href="/">
+          <SpaIcon />
+        </IconButton>
+      </Tooltip>
+    </CanvasControls>
   );
 };

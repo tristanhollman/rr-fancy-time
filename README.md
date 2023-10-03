@@ -17,4 +17,9 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Inspirations
 
+### Petal Shaders
 I was inspired by one of [Paul's](https://codepen.io/prisoner849) CodePen projects and based some of the GLSL shader code on his petal implementation :)
+
+### Background images
+
+Background images were either taken from [Unsplash.com](https://unsplash.com/) or generated with A.I. (StableDiffusion)

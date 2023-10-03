@@ -44,14 +44,17 @@ export const FlyingPetals = () => {
         0,
         THREE.MathUtils.randFloat(-radius, radius)
       );
-      const rRatio = vec.length() / radius;
-      if (vec.length() <= radius && Math.random() < 1 - rRatio) {
+      const distanceFromCenter = vec.length();
+      const rRatio = distanceFromCenter / radius;
+      // Only draw points that are within the circle radius.
+      // And slightly increase the chance for points to be drawn near the center of the circle.
+      if (distanceFromCenter <= radius && Math.random() < 1.5 - rRatio) {
         points.push(vec);
         c.set(petalOptions.color);
         color.push(
-          c.r + Math.random() * 0.1,
-          c.g + Math.random() * 0.1,
-          c.b + Math.random() * 0.1
+          c.r + THREE.MathUtils.randFloat(-0.15, 0.15),
+          c.g + THREE.MathUtils.randFloat(-0.15, 0.15),
+          c.b + THREE.MathUtils.randFloat(-0.15, 0.15)
         );
         delay.push(THREE.MathUtils.randFloat(-10, 0));
         let val = THREE.MathUtils.randFloat(1, 2);
@@ -202,9 +205,6 @@ uniform float scale;
 #include <common>
 #include <color_pars_vertex>
 #include <fog_pars_vertex>
-#include <morphtarget_pars_vertex>
-#include <logdepthbuf_pars_vertex>
-#include <clipping_planes_pars_vertex>
 
 void main() {
 	#include <color_vertex>
@@ -255,6 +255,7 @@ void main() {
 
 	#include <morphtarget_vertex>
 	#include <project_vertex>
+
 	bool cond = floor(speed.y + 0.5) == 0.;
   gl_PointSize = size * ( cond ? 0.75 : ((1. - hRatio) * (smoothstep(0., 0.01, hRatio) * 0.25) + 0.75));
   // Make petals in the text effect area twice as large.
@@ -264,11 +265,6 @@ void main() {
 		bool isPerspective = isPerspectiveMatrix( projectionMatrix );
 		if ( isPerspective ) gl_PointSize *= ( scale / - mvPosition.z );
 	#endif
-	
-  #include <logdepthbuf_vertex>
-	#include <clipping_planes_vertex>
-	#include <worldpos_vertex>
-	#include <fog_vertex>
 }`;
 
 /**
@@ -291,10 +287,6 @@ uniform float opacity;
 
 #include <common>
 #include <color_pars_fragment>
-#include <map_particle_pars_fragment>
-#include <fog_pars_fragment>
-#include <logdepthbuf_pars_fragment>
-#include <clipping_planes_pars_fragment>
 
 void main() {
   if (vRatio == 1.) discard;
@@ -318,16 +310,8 @@ void main() {
   vec4 diffuseColor = vec4(mix(diffuse, mainCol, pow(d, 2.)), 1.);
   diffuseColor = vec4(mix(diffuseColor.rgb, effectCol, vIsEffect), 1.);
 
-	#include <logdepthbuf_fragment>
-	#include <map_particle_fragment>
 	#include <color_fragment>
-	#include <alphatest_fragment>
 
 	outgoingLight = diffuseColor.rgb;
 	gl_FragColor = vec4( outgoingLight, diffuseColor.a );
-
-	#include <tonemapping_fragment>
-	#include <colorspace_fragment>
-	#include <fog_fragment>
-	#include <premultiplied_alpha_fragment>
 }`;

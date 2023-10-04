@@ -20,7 +20,7 @@ export const SakuraControls = () => {
         </IconButton>
       </Tooltip>
       <Tooltip title="Go to earth times view" placement="left">
-        <IconButton href="./globe">
+        <IconButton href="/globe">
           <TravelExploreIcon />
         </IconButton>
       </Tooltip>

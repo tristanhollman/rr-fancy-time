@@ -26,7 +26,7 @@ export const GlobeControls = ({
         </IconButton>
       </Tooltip>
       <Tooltip title="Go to sakura view" placement="left">
-        <IconButton href="/">
+        <IconButton href="./">
           <SpaIcon />
         </IconButton>
       </Tooltip>

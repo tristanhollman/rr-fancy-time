@@ -8,8 +8,8 @@ import { useLocalStorage, useToggle } from "usehooks-ts";
 import { CanvasLoader } from "../shared/CanvasLoader";
 import { SoundCloudPlayer } from "../shared/SoundCloudPlayer";
 import { Background } from "./Background";
+import { Camera } from "./Camera";
 import { FlyingPetals } from "./FlyingPetals";
-import { StaticCamera } from "./StaticCamera";
 import { SakuraControls } from "./SakuraControls";
 
 export default function StaticSakuraScene() {
@@ -20,11 +20,16 @@ export default function StaticSakuraScene() {
     return (
       <>
         <div className={`${styles.startContainer}`}>
+          <div>
+            <h2>Hey there!</h2>
+            <br/>
+            <p>Welcome to my submission for the Mini Hackathon Challenge: &quot;Shaping Real-Time with React&quot;</p>
+            <p>Where I decided to just mess around with WebGL (using three.js) to make something fancy.</p>
+          </div>
           <Button
             size="large"
             onClick={toggle}
             variant="contained"
-            style={{ margin: "auto" }}
           >
             Start
           </Button>
@@ -42,7 +47,7 @@ export default function StaticSakuraScene() {
       >
         <Suspense fallback={<CanvasLoader />}>
           <Background />
-          <StaticCamera />
+          <Camera />
           <FlyingPetals />
           {isDevMode && <Stats />}
         </Suspense>

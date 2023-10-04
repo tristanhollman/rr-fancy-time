@@ -5,7 +5,7 @@ import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// The default NoSSR method does not work for the Globe scene that's using the external `globe` library.
+// The default NoSSR method does not work for the Globe scene that's using the external `react-globe.gl` library.
 // So we have to fall back to the next.js way of disabling ssr.
 const Scene = dynamic(() => import("@/components/globe/GlobeScene"), {
   ssr: false,

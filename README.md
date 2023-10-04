@@ -15,11 +15,20 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Inspirations
+## Credits, Inspirations and Contributions
 
 ### Petal Shaders
-I was inspired by one of [Paul's](https://codepen.io/prisoner849) CodePen projects and based some of the GLSL shader code on his petal implementation :)
+I was inspired by one of [Paul's](https://codepen.io/prisoner849) CodePen projects and based some of the GLSL shader code on his amazing petal implementation :)
 
 ### Background images
 
 Background images were either taken from [Unsplash.com](https://unsplash.com/) or generated with A.I. (StableDiffusion)
+
+## Todo's
+
+[ ] - Get the sakura petal as a wallpaper in [Wallpaper Engine](https://www.wallpaperengine.io/).
+[ ] - Improve the current globe/world-times implementation:
+  [ ] - Don't use a shitty API (┬┬﹏┬┬)
+  [ ] - Show the time as a fancy label/tooltip on the globe itself, instead of the separate side panels.
+[ ] - Let the user toggle the background music from the UI.
+[ ] - Configure multiple presets with different (maybe even custom) background wallpapers for the sakura view.

@@ -28,7 +28,7 @@ Background images were either taken from [Unsplash.com](https://unsplash.com/) o
 
 ### Music
 
-The song playing on the background is 'Sakura SAD PIANO' by 'ChloeBeats'
+The song playing on the background is 'Sakura' by 'ANtarcticbreeze' and can be found [here](https://soundcloud.com/musicformedia-1/sakura-inspirational-hip-hop-lo-fi-no-copyright-claims-music).
 
 ## Todo's
 

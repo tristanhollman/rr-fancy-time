@@ -1,9 +1,11 @@
 # rr-fancy-time
 
+[![Deploy to Github Pages](https://github.com/tristanhollman/rr-fancy-time/actions/workflows/nextjs.yml/badge.svg)](https://github.com/tristanhollman/rr-fancy-time/actions/workflows/nextjs.yml)
+
 A small and fun project for a time-themed hackathon at [R&R WFM](https://github.com/rr-wfm). Using React and ThreeJS to create a cool visualization of the current time.
 Got constantly sidetracked by cool and complex stuff involving GLSL shaders which I wasted most my time on, but also learned a lot. Probably will use them (and ThreeJS) again elsewhere.
 
-If I didn't mess things up, it should be hosted on github pages here :) => https://tristanhollman.github.io/rr-fancy-time
+If I didn't mess things up, it should be hosted on github pages [here](https://tristanhollman.github.io/rr-fancy-time) :)
 
 ## Getting Started
 

@@ -25,12 +25,21 @@ export default function StaticSakuraScene() {
             <h2>Hey there!</h2>
             <br />
             <p>
-              Welcome to my submission for the Mini Hackathon Challenge:
-              &quot;Shaping Real-Time with React&quot;
+              This is my submission for the Mini Hackathon Challenge:
+              &quot;Shaping Real-Time with React&quot; at R&amp;R.
             </p>
             <p>
-              Where I decided to just mess around with WebGL (using three.js) to
+              I wanted to mess around a bit with WebGL and Three.js, to try and
               make something fancy.
+            </p>
+            <p>
+              Even though I wasted a lot of time being distracted and doing less
+              important things{" "}
+              <i>(like adding background music that nobody needs)</i> first,
+              <br />
+              I&apos;m quite happy with the result.
+              <br />
+              Enjoy!
             </p>
           </div>
           <Button size="large" onClick={toggle} variant="contained">

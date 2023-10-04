@@ -1,10 +1,10 @@
+import { useDevMode } from "@/hooks/useDevMode";
 import { OrbitControls } from "@react-three/drei";
 import { useControls } from "leva";
 import { useMemo } from "react";
-import { useLocalStorage } from "usehooks-ts";
 
 export const Camera = () => {
-  const [isDevMode] = useLocalStorage("devMode", false);
+  const [isDevMode, setDevMode] = useDevMode();
 
   const options = useMemo(() => {
     return {

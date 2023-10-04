@@ -1,3 +1,4 @@
+import { useDevMode } from "@/hooks/useDevMode";
 import styles from "@/styles/SakuraScene.module.css";
 import { OrbitControls, Stats } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
@@ -5,7 +6,6 @@ import { EffectComposer, Noise } from "@react-three/postprocessing";
 import { Leva, useControls } from "leva";
 import { Suspense, useMemo } from "react";
 import * as THREE from "three";
-import { useLocalStorage } from "usehooks-ts";
 import { CanvasLoader } from "../shared/CanvasLoader";
 import { SoundCloudPlayer } from "../shared/SoundCloudPlayer";
 import { Base } from "./Base";
@@ -14,7 +14,7 @@ import { Tree } from "./Tree";
 import { backgroundColor } from "./constants";
 
 export default function SakuraScene() {
-  const [isDevMode] = useLocalStorage("devMode", false);
+  const [isDevMode] = useDevMode();
 
   return (
     <>

@@ -7,7 +7,7 @@ export function useTimeZoneInfo(lat: number, lng: number) {
   const roundedLat = lat.toFixed(2);
   const roundedLng = lng.toFixed(2);
 
-  const url = `http://api.geonames.org/timezoneJSON?lat=${roundedLat}&lng=${roundedLng}&username=${username}`;
+  const url = `https://secure.geonames.org/timezoneJSON?lat=${roundedLat}&lng=${roundedLng}&username=${username}`;
   const { data } = useFetch<TimeZoneApiResponse | TimeZoneApiErrorResponse>(
     url
   );

@@ -8,7 +8,11 @@ Got constantly sidetracked by cool and complex stuff involving GLSL shaders whic
 
 If I didn't mess things up, it should be hosted on github pages [here](https://tristanhollman.github.io/rr-fancy-time) :)
 
-You can also get it the main flying sakura petal scene as a wallpaper on wallpaper engine => [link](https://steamcommunity.com/sharedfiles/filedetails/?id=3046705007)
+I've also created a wallpaper on Wallpaper Engine (on Steam) so you can set the main scene, with the flying sakura petals, as your desktop background.
+Not quite sure why you would want that, but as I wanted to try and make something for Wallpaper Engine anyways...you can!
+It's a very basic version of the web app, without any configuration options whatsoever. (👉ﾟヮﾟ)👉 [link](https://steamcommunity.com/sharedfiles/filedetails/?id=3046705007)
+
+![Preview](https://github.com/tristanhollman/rr-fancy-time/assets/8666039/04760251-3535-4dab-9d0a-62716b3b431e)
 
 ## Getting Started
 

@@ -1,5 +1,6 @@
 # rr-fancy-time
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Deploy to Github Pages](https://github.com/tristanhollman/rr-fancy-time/actions/workflows/nextjs.yml/badge.svg)](https://github.com/tristanhollman/rr-fancy-time/actions/workflows/nextjs.yml)
 
 A small and fun project for a time-themed hackathon at [R&R WFM](https://github.com/rr-wfm). Using React and ThreeJS to create a cool visualization of the current time.

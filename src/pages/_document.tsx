@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
@@ -8,8 +8,11 @@ export default function Document() {
           name="description"
           content="Fancy Time application for a mini hackaton."
         />
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:* data: http://unpkg.com; script-src 'unsafe-eval' https: localhost:* blob:; style-src 'unsafe-inline' https:;" />
-        <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self' https: localhost:* data: http://unpkg.com; script-src 'unsafe-eval' https: localhost:* blob:; style-src 'unsafe-inline' https:;"
+        />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta name="referrer" content="same-origin" />
         <link rel="icon" href="./favicon.ico" />
       </Head>
@@ -18,5 +21,5 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }

@@ -3,39 +3,39 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "export": "next export",
     "lint": "next lint",
-    "export": "next export"
+    "start": "next start"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.12",
-    "@mui/material": "^5.14.12",
-    "@react-three/drei": "^9.87.0",
-    "@react-three/fiber": "^8.14.5",
-    "@react-three/postprocessing": "^2.15.1",
-    "@types/node": "20.8.3",
-    "@types/react": "18.2.25",
-    "@types/react-dom": "18.2.11",
-    "@types/three": "^0.156.0",
-    "eslint": "8.51.0",
-    "eslint-config-next": "13.5.4",
+    "@mui/icons-material": "^5.15.6",
+    "@mui/material": "^5.15.6",
+    "@react-three/drei": "^9.96.5",
+    "@react-three/fiber": "^8.15.15",
+    "@react-three/postprocessing": "^2.15.12",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.1.0",
     "leva": "^0.9.35",
-    "luxon": "^3.4.3",
-    "next": "13.5.4",
+    "luxon": "^3.4.4",
+    "next": "14.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-globe.gl": "^2.25.0",
-    "three": "^0.157.0",
-    "three-globe": "^2.29.3",
-    "typescript": "5.2.2",
-    "usehooks-ts": "^2.9.1"
+    "react-globe.gl": "^2.27.1",
+    "three": "^0.160.1",
+    "three-globe": "^2.30.0",
+    "typescript": "5.3.3",
+    "usehooks-ts": "^2.10.0"
   },
   "devDependencies": {
-    "@types/luxon": "^3.3.2",
-    "eslint-config-prettier": "^9.0.0"
+    "@types/luxon": "^3.4.2",
+    "@types/node": "20.11.10",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "@types/three": "^0.160.0",
+    "eslint-config-prettier": "^9.1.0"
   }
 }
